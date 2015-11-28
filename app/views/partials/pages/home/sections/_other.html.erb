@@ -1,0 +1,17 @@
+<% %i[hosting tech_support].each_with_index do |item, i| %>
+    <div class="section-item">
+        <h3><%=t ".item#{i+1}.title" %></h3>
+        <div class="illustration">
+            <%= svg item %>
+        </div>
+        <p><%=t ".item#{i+1}.description" %></p>
+    </div>
+<% end %>
+
+<div class="section-item">
+    <h3><%=t '.item3.title' %></h3>
+    <div class="description-container">
+        <%= render 'partials/multi_column_list', items: t('.item3.list') %>
+        <p><%=t '.item3.description' %></p>
+    </div>
+</div>

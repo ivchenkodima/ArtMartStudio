@@ -1,0 +1,23 @@
+default: &default
+  adapter:  postgresql
+  encoding: unicode
+  host:     localhost
+  pool:     5
+
+development:
+  <<: *default
+  database: artmartstudio_development
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: artmartstudio_test
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: artmartstudio_production
+  username: artmartstudio
+  password: <%= ENV['DATABASE_PASSWORD'] %>

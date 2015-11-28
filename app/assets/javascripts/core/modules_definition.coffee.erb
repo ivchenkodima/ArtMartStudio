@@ -1,0 +1,9 @@
+<%=
+  Dir.glob('app/assets/javascripts/**/*/').map do |dir|
+    coffee_module = dir.gsub('app/assets/javascripts/', '').split('/').map(&:capitalize).join('.')
+    "window.#{coffee_module} = {}"
+  end.join("\n")
+%>
+
+
+

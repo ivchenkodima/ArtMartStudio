@@ -1,0 +1,6 @@
+<% 2.times do |i| %>
+    <div class="section-item">
+        <h3><%=t ".item#{i+1}.title" %></h3>
+        <%= render 'partials/multi_column_list', items: t(".item#{i+1}.list") %>
+    </div>
+<% end %>

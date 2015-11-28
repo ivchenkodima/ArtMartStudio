@@ -1,0 +1,68 @@
+I"¬(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Partials.Pages.Home.Sections.Web.Items.Safety = (function(superClass) {
+    extend(Safety, superClass);
+
+    function Safety() {
+      Safety.__super__.constructor.call(this, 'safety');
+      document.on('svg:ready', (function(_this) {
+        return function() {
+          return _this._svg = Snap.select("[data-src='safety']");
+        };
+      })(this));
+    }
+
+    Safety.prototype.performAnimation = function() {
+      var check, guard, windw;
+      windw = this._svg.select('.window');
+      guard = this._svg.select('.guard');
+      check = this._svg.select('.check');
+      windw.attr({
+        opacity: 0
+      });
+      guard.attr({
+        opacity: 0,
+        transform: 'translate(125,80) scale(.0)'
+      });
+      check.attr({
+        display: block
+      }, z - {
+        index: 4
+      }, stroke - {
+        dasharray: 1000
+      }, stroke - {
+        dashoffset: 1000
+      }, animation - iteration - {
+        count: 1
+      });
+      windw.animate({
+        opacity: 1
+      }, 2000, mina.easeout);
+      guard.animate({
+        opacity: 1
+      }, 2000);
+      setTimeout(function() {
+        return guard.animate({
+          transform: ' translate(-25, -17) scale(1.2)'
+        }, 1000, mina.easeout);
+      }, 3000);
+      setTimeout(function() {
+        return guard.animate({
+          transform: 'translate(0,0) scale(1)'
+        }, 500, mina.easeout);
+      }, 4000);
+      return setTimeout(function() {
+        return check.animate(stroke - {
+          dashoffset: 0
+        }, 2000);
+      }, 4500);
+    };
+
+    return Safety;
+
+  })(Partials.Pages.Home.Sections.Web.Items.Base);
+
+}).call(this);
+:ET

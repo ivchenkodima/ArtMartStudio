@@ -1,0 +1,124 @@
+I"ä(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Partials.Pages.Home.Sections.Web.Items.Crossbrowser = (function(superClass) {
+    extend(Crossbrowser, superClass);
+
+    function Crossbrowser() {
+      Crossbrowser.__super__.constructor.call(this, 'crossbrowser');
+    }
+
+    Crossbrowser.prototype.performAnimation = function() {
+      var chrome, cubicBezier, duration, epsilon, firefox, ie, safari, timingFunction;
+      this._brousers = Snap.select("[data-src='browsers']");
+      safari = this._brousers.select('.safari');
+      firefox = this._brousers.select('.firefox');
+      ie = this._brousers.select('.IE');
+      chrome = this._brousers.select('.chrome');
+      chrome.attr({
+        transform: 'translate(-800,0)'
+      });
+      ie.attr({
+        transform: 'translate(-750,0)'
+      });
+      firefox.attr({
+        transform: 'translate(-600,0)'
+      });
+      safari.attr({
+        transform: 'translate(-250,0)'
+      });
+      cubicBezier = function(x1, y1, x2, y2, epsilon) {
+        var curveX, curveY, derivativeCurveX;
+        curveX = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * v * v * t * x1 + 3 * v * t * t * x2 + t * t * t;
+        };
+        curveY = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * v * v * t * y1 + 3 * v * t * t * y2 + t * t * t;
+        };
+        derivativeCurveX = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * (2 * (t - 1) * t + v * v) * x1 + 3 * (-t * t * t + 2 * v * t) * x2;
+        };
+        return function(t) {
+          var x2;
+          var d2, i, t0, t1, t2, x;
+          x = t;
+          t0 = void 0;
+          t1 = void 0;
+          t2 = void 0;
+          x2 = void 0;
+          d2 = void 0;
+          i = void 0;
+          while (i < 8) {
+            x2 = curveX(t2) - x;
+            if (Math.abs(x2) < epsilon) {
+              return curveY(t2);
+            }
+            d2 = derivativeCurveX(t2);
+            if (Math.abs(d2) < 1e-6) {
+              break;
+            }
+            t2 = t2 - (x2 / d2);
+            i++;
+          }
+          t0 = 0;
+          t1 = 1;
+          t2 = x;
+          if (t2 < t0) {
+            return curveY(t0);
+          }
+          if (t2 > t1) {
+            return curveY(t1);
+          }
+          while (t0 < t1) {
+            x2 = curveX(t2);
+            if (Math.abs(x2 - x) < epsilon) {
+              return curveY(t2);
+            }
+            if (x > x2) {
+              t0 = t2;
+            } else {
+              t1 = t2;
+            }
+            t2 = (t1 - t0) * .5 + t0;
+          }
+          return curveY(t2);
+        };
+      };
+      duration = 1000;
+      epsilon = 1000 / 60 / duration / 4;
+      timingFunction = cubicBezier(1, 0.74, 0.79, 1.57, epsilon);
+      setTimeout(function() {
+        return chrome.animate({
+          transform: 'translate(0,0) rotate(360deg)'
+        }, 1000, mina.easein);
+      }, 1000);
+      setTimeout(function() {
+        return ie.animate({
+          transform: 'translate(0,0) rotate(360deg)'
+        }, 1500, timingFunction);
+      }, 2000);
+      setTimeout(function() {
+        return firefox.animate({
+          transform: 'translate(0,0) rotate(360deg)'
+        }, 1000, timingFunction);
+      }, 3000);
+      return setTimeout(function() {
+        return safari.animate({
+          transform: 'translate(0,0) rotate(360deg)'
+        }, 700, timingFunction);
+      }, 4000);
+    };
+
+    return Crossbrowser;
+
+  })(Partials.Pages.Home.Sections.Web.Items.Base);
+
+}).call(this);
+:ET

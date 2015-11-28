@@ -1,0 +1,9 @@
+<div class="multi-column-list">
+    <% items.each do |_, column| %>
+        <ul>
+            <% column.each do |_, item| %>
+            <li><%= svg :list_marker %><%= item %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>

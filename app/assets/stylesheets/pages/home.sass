@@ -1,0 +1,136 @@
+$opacity-transition-time: 1s
+$section-item-border: 1px solid rgba(0, 0, 0, 0.27)
+
+.pages.home
+  section:first-of-type
+    margin-top: 15px
+
+  .section-header
+    padding: 25px 20px
+
+  h2
+    font-size: 25px
+    text-align: center
+    text-transform: uppercase
+
+  .section-description
+    font-size: 18px
+    text-align: center
+
+  .section-items-container
+    color: #fff
+
+  h3
+    font-size: 24px
+    font-weight: normal
+    text-align: center
+
+  .section-item
+    padding: 20px
+    border-bottom: $section-item-border
+    backface-visibility: hidden
+    &:last-of-type
+      border-bottom: 0
+
+  .illustration
+    margin: 20px 0
+    svg
+      width: 100%
+      height: 120px
+
+  .multi-column-list
+    font-size: 18px
+
+  .contacts, .section-header
+    transition: opacity $opacity-transition-time
+
+  &.compact
+    overflow-y: scroll
+    #main
+      height: 0
+      overflow: hidden
+    footer
+      display: none
+    .contacts
+      opacity: 0
+      visibility: hidden
+
+  .hidden
+    opacity: 0
+
+  .preloader
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    margin: auto
+    width: 35px
+    height: 35px
+    border-radius: 50%
+    background: linear-gradient(to right, #66B0DF 10%, rgba(255, 255, 255, 0) 42%)
+    animation: rotate-preloader 0.5s infinite linear
+    display: none
+    &::before
+      width: 50%
+      height: 50%
+      background: linear-gradient(#5E93C7, #66B0DF)
+      border-radius: 100% 0 0 0
+      position: absolute
+      top: 0
+      left: 0
+      content: ''
+    &::after
+      background: $page-background
+      width: 75%
+      height: 75%
+      border-radius: 50%
+      content: ''
+      margin: auto
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+
+  +before-width(750px)
+    .section-item
+      transition: opacity $opacity-transition-time
+
+  +after-width(750px)
+    h2
+      font-size: 32px
+    h3
+      font-size: 30px
+
+  +after-width(1400px)
+    section:first-of-type
+      margin-top: 0
+    h2
+      font-size: 40px
+    h3
+      font-size: 35px
+    .section-header
+      padding-top: 50px
+      padding-bottom: 50px
+    .section-item
+      font-size: 18px
+    .section-description
+      font-size: 20px
+    .multi-column-list
+      font-size: 20px
+    .illustration
+      margin: 40px 0
+      svg
+        height: 160px
+
+  @keyframes rotate-preloader
+    from
+      transform: rotate(0deg)
+    to
+      transform: rotate(360deg)
+
+  @import partials/pages/home/sections/web
+  @import partials/pages/home/sections/style
+  @import partials/pages/home/sections/other
+  @import partials/pages/home/sections/projects

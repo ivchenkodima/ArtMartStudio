@@ -1,0 +1,9 @@
+<% %i[speed responsiveness safety crossbrowser futurism].each do |item| %>
+    <div class="section-item <%= item %>-item">
+        <h3><%=t "partials.pages.home.sections.web.items.#{item}.title" %></h3>
+        <div class="illustration">
+            <%= render "partials/pages/home/sections/web/items/#{item}" %>
+        </div>
+        <p><%=t "partials.pages.home.sections.web.items.#{item}.description" %></p>
+    </div>
+<% end %>

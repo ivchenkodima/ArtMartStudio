@@ -1,0 +1,99 @@
+ru:
+  partials:
+    layouts:
+      main:
+        contacts:
+          address: г. Киев ул. Шота-Руставели
+          phone_number: +38 (066) 740-14-88
+    pages:
+      home:
+        sections:
+          web:
+            title: 5 основныx преимуществ,
+            description: по которым вам следует обратится к нам в разработке web-ресурсов
+            items:
+              speed:
+                title: Скорость
+                description: Идейные соображения высшего порядка, а также постоянный
+                             количественный рост и сфера нашей активности влечет за собой
+                             процесс внедрения и модернизации модели развития. С другой
+              responsiveness:
+                title: Адаптивность
+                description: Идейные соображения высшего порядка, а также постоянный
+                             количественный рост и сфера нашей активности влечет за собой
+                             процесс внедрения и модернизации модели развития. С другой
+              safety:
+                title: Безопасность
+                description: Идейные соображения высшего порядка, а также постоянный
+                             количественный рост и сфера нашей активности влечет за собой
+                             процесс внедрения и модернизации модели развития. С другой
+              crossbrowser:
+                title: Кроссбраузерность
+                description: Идейные соображения высшего порядка, а также постоянный
+                             количественный рост и сфера нашей активности влечет за собой
+                             процесс внедрения и модернизации модели развития. С другой
+              futurism:
+                title: Футуристичность
+                description: Идейные соображения высшего порядка, а также постоянный
+                             количественный рост и сфера нашей активности влечет за собой
+                             процесс внедрения и модернизации модели развития. С другой
+          style:
+            title: Фирменный стиль
+            description: И тут какой-то текст, который кратко объясняет суть этой секции
+            item1:
+              title: Логотип и рекламные материалы
+              list:
+                column1:
+                  item1: Lorem ipsum dolor sit amet.
+                  item2: Lorem ipsum dolor sit amet.
+                  item3: Lorem ipsum dolor sit amet.
+                  item4: Lorem ipsum dolor sit amet.
+                column2:
+                  item1: Lorem ipsum dolor sit amet.
+                  item2: Lorem ipsum dolor sit amet.
+                  item3: Lorem ipsum dolor sit amet.
+                  item4: Lorem ipsum dolor sit amet.
+            item2:
+              title: Атрибутика и деловая документация
+              list:
+                column1:
+                  item1: Lorem ipsum dolor sit amet.
+                  item2: Lorem ipsum dolor sit amet.
+                  item3: Lorem ipsum dolor sit amet.
+                  item4: Lorem ipsum dolor sit amet.
+                column2:
+                  item1: Lorem ipsum dolor sit amet.
+                  item2: Lorem ipsum dolor sit amet.
+                  item3: Lorem ipsum dolor sit amet.
+                  item4: Lorem ipsum dolor sit amet.
+          other:
+            title: ...и кое-что еще,
+            description: что будет для вас полезно
+            item1:
+              title: Хостинг
+              description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio provident
+                  assumenda incidunt autem ducimus, aliquam sapiente ratione tempora nam amet!
+            item2:
+              title: Техподдрежка
+              description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio provident
+                  assumenda incidunt autem ducimus, aliquam sapiente ratione tempora nam amet!
+            item3:
+              title: Заголовок для 3D-фото
+              list:
+                column1:
+                  item1: Lorem ipsum dolor sit amet.
+                  item2: Lorem ipsum dolor sit amet.
+                column2:
+                  item3: Lorem ipsum dolor sit amet.
+                  item4: Lorem ipsum dolor sit amet.
+              description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus voluptatem, corporis voluptatum dolorem rem laudantium dolores odio, similique sapiente totam officia aspernatur veniam ipsam fugit facere quae ullam repellendus consequuntur eos! Accusamus odio quia, ea reiciendis ipsum quod, atque facere assumenda omnis sequi sit alias
+          projects:
+            title: Наши недавние проекты
+            project_title: Гостинично-ресторанный комлекс «VIKTORIYA»
+            task:
+              title: 'Задача:'
+              description: Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации модели развития.
+            solution:
+              title: 'Описание решения:'
+              description: Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации модели развития.
+            button: Просмотреть

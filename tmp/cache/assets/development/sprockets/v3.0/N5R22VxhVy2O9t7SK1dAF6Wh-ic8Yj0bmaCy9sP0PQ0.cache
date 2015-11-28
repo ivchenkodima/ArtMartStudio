@@ -1,0 +1,39 @@
+I"î(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Partials.Pages.Home.Sections.Web.Items.Crossbrowser = (function(superClass) {
+    extend(Crossbrowser, superClass);
+
+    function Crossbrowser() {
+      var b, browser, i, len, ref;
+      Crossbrowser.__super__.constructor.call(this, 'crossbrowser');
+      ref = ['safari', 'chrome', 'IE', 'firefox'];
+      for (i = 0, len = ref.length; i < len; i++) {
+        browser = ref[i];
+        this["_" + browser] = b = this.find("[data-src='" + browser + "']");
+        b.offset = b.offset().left + b.width();
+        b.css({
+          transform: "translateX(-" + b.offset + "px) rotateZ(0deg)"
+        });
+      }
+    }
+
+    Crossbrowser.prototype.performAnimation = function() {
+      return this._chrome.transition({
+        transform: "translateX(0) rotateZ(720deg)"
+      }, 2000, 'ease', (function(_this) {
+        return function() {
+          return _this._IE.transition({
+            transform: "translateX(" + (_this._chrome.offset - _this._IE.offset - .1 * _this._IE.width()) + "px) rotateZ(720deg)"
+          }, 2000, 'ease', function() {});
+        };
+      })(this));
+    };
+
+    return Crossbrowser;
+
+  })(Partials.Pages.Home.Sections.Web.Items.Base);
+
+}).call(this);
+:ET

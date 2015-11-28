@@ -1,0 +1,113 @@
+$arrow-time: 1.5s
+
+#web-section
+  overflow: hidden
+
+  .section-item
+    transform-origin: left
+    overflow: hidden
+    &:last-child
+      transform-origin: right
+
+  .illustration
+    position: relative
+  
+  .crossbrowser-item 
+    text-align: center
+    p
+      text-align: left
+    .illustration
+      +clearfix
+      display: inline-block
+      svg 
+        display: block
+        float: left
+        width: auto
+        &:not(:first-child)
+          margin-left: 30px
+        
+  [data-src=speedometer_arrow]
+    position: absolute
+    left: 0
+    top: 0
+    transform: rotate(-225deg)
+    transform-origin: center 63%
+    animation-timing-function: cubic-bezier(0.89, 0.17, 0.83, 0.67)
+    &.active
+      animation: move-arrow-1 $arrow-time, move-arrow-2 $arrow-time $arrow-time, move-arrow-3 0.5s 2*$arrow-time forwards
+
+  [data-src=safety]
+    position: relative
+    .check
+      display: block
+      z-index: 4
+      stroke-dasharray: 1000
+      stroke-dashoffset: 1000
+
+  +before-width(500px)
+
+
+  +after-width(750px)
+    .section-items-container
+      display: flex
+      flex-wrap: wrap
+    .section-item
+      width: 50%
+      &:nth-child(2n+1)
+        border-right: $section-item-border
+      &:nth-child(4)
+        width: 100%
+        order: 5
+        border-bottom: none
+        transform-origin: 50% 0
+      &:last-child
+        border-bottom: $section-item-border
+
+  +after-width(1400px)
+    .section-items-container
+      +clearfix
+      display: block
+    .section-item
+      float: left
+      &:first-child, &:nth-child(2), &:nth-child(3)
+        width: 33.333%
+      &:first-child, &:nth-child(2), &:nth-child(4)
+        border-right: $section-item-border
+      &:nth-child(4)
+        width: 50%
+        transform-origin: left
+      &:last-child
+        border-bottom: none
+    .bowser-container
+      position: relative
+      left: 50%
+      width: 510px
+      transform: translateX(-50%)
+
+  @keyframes move-arrow-1
+    50%
+      transform: rotate(0deg)
+    100%
+      transform: rotate(-20deg)
+
+  @keyframes move-arrow-2
+    0%
+      transform: rotate(-20deg)
+    15%
+      transform: rotate(-7deg)
+    25%
+      transform: rotate(-5deg)
+    35%
+      transform: rotate(-7deg)
+    45%
+      transform: rotate(-5deg)
+    55%
+      transform: rotate(-7deg)
+    100%
+      transform: rotate(-20deg)
+
+  @keyframes move-arrow-3
+    0%
+      transform: rotate(-20deg)
+    100%
+      transform: rotate(0deg)

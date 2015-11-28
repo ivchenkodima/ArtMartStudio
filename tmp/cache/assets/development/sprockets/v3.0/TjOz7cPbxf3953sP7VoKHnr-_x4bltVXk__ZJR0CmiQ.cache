@@ -1,0 +1,80 @@
+I"´(function() {
+  var definitionsClass, definitionsPresent, documentReady, insertDefinitions, manage, parseSvg, replacePlaceholders, svgs;
+
+  svgs = null;
+
+  documentReady = false;
+
+  definitionsClass = 'definitions';
+
+  definitionsPresent = function() {
+    return $("svg." + definitionsClass).length > 0;
+  };
+
+  parseSvg = function(id, action) {
+    var svg;
+    if (svg = svgs.getElementById(id)) {
+      svg = $(document.importNode(svg, true));
+      svg.removeAttr('id');
+      return action(svg);
+    }
+  };
+
+  insertDefinitions = function() {
+    if (!definitionsPresent()) {
+      return parseSvg('definitions', function(defs) {
+        defs.attr('class', definitionsClass);
+        defs.css({
+          position: 'absolute',
+          visibility: 'hidden',
+          width: 0,
+          height: 0
+        });
+        return $('body').append(defs);
+      });
+    }
+  };
+
+  replacePlaceholders = function() {
+    var i, id, len, placeholder, ref, results;
+    ref = $('svg[data-src]');
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      placeholder = ref[i];
+      placeholder = $(placeholder);
+      id = placeholder.attr('data-src');
+      results.push(parseSvg(id, function(svg) {
+        var attr, j, len1, ref1;
+        ref1 = placeholder[0].attributes;
+        for (j = 0, len1 = ref1.length; j < len1; j++) {
+          attr = ref1[j];
+          svg.attr(attr.name, attr.value);
+        }
+        return placeholder.replaceWith(svg);
+      }));
+    }
+    return results;
+  };
+
+  manage = function() {
+    insertDefinitions();
+    replacePlaceholders();
+    return $(document).trigger('svg:ready');
+  };
+
+  $.get("/assets/application-a468a8c27dc3ab0e4cad1c9519918756c3839ad6ca26aa8fcacfb27dcc0d721e.svg", function(data) {
+    svgs = data;
+    if (documentReady) {
+      return manage();
+    }
+  });
+
+  $(document).on('page:change', function() {
+    documentReady = true;
+    if (svgs) {
+      return manage();
+    }
+  });
+
+}).call(this);
+:ET

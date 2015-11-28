@@ -1,0 +1,21 @@
+<% %i[web style other projects].each do |section| %>
+    <section id="<%= section %>-section">
+        <div class="section-header">
+            <h2><%=t "partials.pages.home.sections.#{section}.title" %></h2>
+            <% if I18n.exists?("partials.pages.home.sections.#{section}.description") %>
+                <p class="section-description">
+                    <%=t "partials.pages.home.sections.#{section}.description" %>
+                </p>
+            <% end %>
+        </div>
+        <div class="section-items-container">
+            <% if section == :web %>
+                <%= render 'partials/pages/home/sections/web/base' %>
+            <% else %>
+                <%= render "partials/pages/home/sections/#{section}" %>
+            <% end %>
+        </div>
+    </section>
+<% end %>
+
+<div class="preloader"></div>

@@ -1,0 +1,58 @@
+I"9(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Pages.Home = (function(superClass) {
+    extend(Home, superClass);
+
+    function Home() {
+      Home.__super__.constructor.call(this);
+      this._sections = [new Partials.Pages.Home.Sections.Web.Base(), new Partials.Pages.Home.Sections.Style(), new Partials.Pages.Home.Sections.Other(), new Partials.Pages.Home.Sections.Projects()];
+      document.on('svg:ready', (function(_this) {
+        return function() {
+          return _this._performAnimations();
+        };
+      })(this));
+    }
+
+    Home.prototype._performAnimations = function() {
+      this._prepareSections();
+      this.addClass('compact');
+      return this.logo.performAnimation((function(_this) {
+        return function() {
+          _this.removeClass('compact');
+          return app.withInterval(200, function() {
+            return _this._updateSections();
+          });
+        };
+      })(this));
+    };
+
+    Home.prototype._prepareSections = function() {
+      var i, len, ref, results, s;
+      ref = this._sections;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        s = ref[i];
+        results.push(s.prepareForTransformations());
+      }
+      return results;
+    };
+
+    Home.prototype._updateSections = function() {
+      var i, len, ref, results, s;
+      ref = this._sections;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        s = ref[i];
+        results.push(s.update());
+      }
+      return results;
+    };
+
+    return Home;
+
+  })(Layouts.Main);
+
+}).call(this);
+:ET

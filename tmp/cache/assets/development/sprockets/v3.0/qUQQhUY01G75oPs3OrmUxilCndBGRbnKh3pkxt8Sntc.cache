@@ -1,0 +1,63 @@
+I"ù	(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Partials.Pages.Home.Sections.Web.Base = (function(superClass) {
+    extend(Base, superClass);
+
+    function Base() {
+      Base.__super__.constructor.call(this, 'web');
+    }
+
+    Base.prototype.update = function() {
+      return Base.__super__.update.call(this, (function(_this) {
+        return function() {
+          if (_this._onSameLevel([_this.items[0], _this.items[1]])) {
+            return _this._rotateItem(0, 'Y', '+', function() {
+              return _this._rotateItem(1, 'Y', '+', function() {
+                if (_this._onSameLevel([_this.items[0], _this.items[1], _this.items[2]])) {
+                  return _this._rotateItem(2, 'Y', '+', function() {
+                    _this._rotateItem(3, 'Y', '+');
+                    return _this._rotateItem(4, 'Y', '-', function() {
+                      return _this._animateItems();
+                    });
+                  });
+                } else {
+                  _this._rotateItem(2, 'Y', '+');
+                  return _this._rotateItem(4, 'Y', '-', function() {
+                    return _this._rotateItem(3, 'X', '-', function() {
+                      return _this._animateItems();
+                    });
+                  });
+                }
+              });
+            });
+          }
+        };
+      })(this));
+    };
+
+    Base.prototype._initializeItems = function() {
+      return [new Partials.Pages.Home.Sections.Web.Items.Speed(), new Partials.Pages.Home.Sections.Web.Items.Responsiveness(), new Partials.Pages.Home.Sections.Web.Items.Safety(), new Partials.Pages.Home.Sections.Web.Items.Crossbrowser(), new Partials.Pages.Home.Sections.Web.Items.Futurism()];
+    };
+
+    Base.prototype._animateItems = function() {
+      var i, j, len, ref, results;
+      if (!this._itemAnimationsStarted) {
+        this._itemAnimationsStarted = true;
+        ref = this.items;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          i = ref[j];
+          results.push(i.performAnimation());
+        }
+        return results;
+      }
+    };
+
+    return Base;
+
+  })(Partials.Pages.Home.Sections.Base);
+
+}).call(this);
+:ET

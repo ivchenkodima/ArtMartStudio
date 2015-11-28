@@ -1,0 +1,19 @@
+#other-section
+  +after-width(750px)
+    .section-items-container
+      +clearfix
+    .section-item
+      float: left
+      &:first-child, &:nth-child(2)
+        width: 50%
+      &:first-child
+        border-right: $section-item-border
+        transform-origin: left
+      &:nth-child(2)
+        transform-origin: right
+      &:last-child
+        width: 100%
+        transform-origin: 50% 0
+    ul
+      float: left
+      width: 50%

@@ -1,0 +1,126 @@
+I"å(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Partials.Pages.Home.Sections.Web.Items.Crossbrowser = (function(superClass) {
+    extend(Crossbrowser, superClass);
+
+    function Crossbrowser() {
+      Crossbrowser.__super__.constructor.call(this, 'crossbrowser');
+    }
+
+    Crossbrowser.prototype.performAnimation = function() {
+      var chrome, chrome_offset, cubicBezier, duration, epsilon, firefox, firefox_offset, i, ie, ie_offset, safari, safari_offset, timingFunction;
+      safari = $("[data-src='safari']");
+      firefox = $("[data-src='firefox']");
+      ie = $("[data-src='IE']");
+      chrome = $("[data-src='chrome']");
+      cubicBezier = function(x1, y1, x2, y2, epsilon) {
+        var curveX, curveY, derivativeCurveX;
+        curveX = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * v * v * t * x1 + 3 * v * t * t * x2 + t * t * t;
+        };
+        curveY = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * v * v * t * y1 + 3 * v * t * t * y2 + t * t * t;
+        };
+        derivativeCurveX = function(t) {
+          var v;
+          v = 1 - t;
+          return 3 * (2 * (t - 1) * t + v * v) * x1 + 3 * (-t * t * t + 2 * v * t) * x2;
+        };
+        return function(t) {
+          var x2;
+          var d2, i, t0, t1, t2, x;
+          x = t;
+          t0 = void 0;
+          t1 = void 0;
+          t2 = void 0;
+          x2 = void 0;
+          d2 = void 0;
+          i = void 0;
+          while (i < 8) {
+            x2 = curveX(t2) - x;
+            if (Math.abs(x2) < epsilon) {
+              return curveY(t2);
+            }
+            d2 = derivativeCurveX(t2);
+            if (Math.abs(d2) < 1e-6) {
+              break;
+            }
+            t2 = t2 - (x2 / d2);
+            i++;
+          }
+          t0 = 0;
+          t1 = 1;
+          t2 = x;
+          if (t2 < t0) {
+            return curveY(t0);
+          }
+          if (t2 > t1) {
+            return curveY(t1);
+          }
+          while (t0 < t1) {
+            x2 = curveX(t2);
+            if (Math.abs(x2 - x) < epsilon) {
+              return curveY(t2);
+            }
+            if (x > x2) {
+              t0 = t2;
+            } else {
+              t1 = t2;
+            }
+            t2 = (t1 - t0) * .5 + t0;
+          }
+          return curveY(t2);
+        };
+      };
+      duration = 1000;
+      epsilon = 1000 / 60 / duration / 4;
+      timingFunction = cubicBezier(1, 0.74, 0.79, 1.57, epsilon);
+      chrome_offset = -(chrome.offset().left) - 250;
+      ie_offset = -(ie.offset().left + 250);
+      firefox_offset = -(firefox.offset().left + 250);
+      safari_offset = -(safari.offset().left + 250);
+      chrome.transition({
+        transform: "translateX(" + chrome_offset + "px) rotate(0deg)"
+      }, 2000);
+      firefox.css({
+        transform: "translateX(" + firefox_offset + "px) rotate(0deg)"
+      });
+      safari.css({
+        transform: "translateX(" + safari_offset + "px) rotate(0deg)"
+      });
+      ie.css({
+        transform: "translateX(" + ie_offset + "px) rotate(0deg)"
+      })(function() {
+        return chrome.transition({
+          transform: "rotate(180deg)"
+        }, 3000, 'ease', function() {
+          return ie.transition({
+            transform: "rotate(180deg)"
+          }, 3000, 'ease', function() {
+            return firefox.transition({
+              transform: "rotate(180deg)"
+            }, 3000, 'ease', function() {
+              return firefox.transition({
+                transform: "rotate(180deg)"
+              }, 3000, 'ease', function() {
+                return alert(1);
+              });
+            });
+          });
+        });
+      });
+      return i = 90;
+    };
+
+    return Crossbrowser;
+
+  })(Partials.Pages.Home.Sections.Web.Items.Base);
+
+}).call(this);
+:ET

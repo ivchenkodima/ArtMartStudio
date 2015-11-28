@@ -1,0 +1,21 @@
+=clearfix
+  &::after
+    display: table
+    content: ''
+    clear: both
+
+=after-width($width)
+  @media only screen and (min-width: $width)
+    @content
+
+=before-width($width)
+  @media only screen and (max-width: $width)
+    @content
+
+=after-height($height)
+  @media only screen and (min-height: $height)
+    @content
+
+=before-height($height)
+  @media only screen and (max-height: $height)
+    @content
